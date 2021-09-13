@@ -1,0 +1,26 @@
+title: List of compatible / tested hardware with Steam Deck
+email: dmitriy.shafranskiy.git@gmail.com
+description: >- # this means to ignore newlines until "baseurl:"
+  This site should contain list of hardware: adapters / hubs / dock stations that were tested with 'Steam Deck' ©
+baseurl: ""
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: dimi_shaf
+github_username:  shafr
+
+timezone: Europe/Prague
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+  # - jekyll-sitemap
+
+google_analytics: "G-LBC7N92S0C"
+
+show_downloads: false
+show_github_badge: false  
+show_drafts: false
+
+collections:
+   devices:
+      output: true

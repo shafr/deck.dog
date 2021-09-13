@@ -1,0 +1,62 @@
+---
+layout: default
+comments: true
+---
+
+<!-- Layout specific things -->
+{% assign thumbnail = page.slug | prepend: '/assets/devices/' | append: ".png" %}
+{% assign vendor = page.slug | split: '_' | first %}
+{% assign model = page.slug | split: '_' | last %}
+
+<!-- Power Delivery in Watts, 0 if not supported -->
+
+{% unless page.power_delivery %}
+  {% assign pd = "❌" %}
+{% elsif page.power_delivery == 0 %}
+  {% assign pd = "❌" %}
+{% else %}
+  {% assign pd = page.power_delivery | append: ' W' | prepend: '✅ '%}
+{% endunless %}
+
+{{ page.display_port | inspect }}
+
+<!-- Display outputs -->
+{% if page.display_port == true %}
+  {% assign display_port = "✅" %}
+{% elsif page.display_port == 'nt' %}
+  {% assign display_port = "🔲" %}
+{% else %}  
+  {% assign display_port = "❌" %}
+{% endif %}
+
+
+
+<!-- Network -->
+{% unless page.ethernet %}
+  {% assign ethernet = "❌" %}
+{% elsif page.ethernet == 'nt' %}
+  {% assign ethernet = "🔲" %}
+{% else %}
+  {% assign ethernet = page.ethernet | append: ' MBPS' | prepend: '✅ '%}
+{% endunless %}
+
+
+<div class="d-flex flex-row flex-nowrap">
+  <div class="d-flex flex-column">
+    <a href="{{ page.details_url }}"><img src="{{ thumbnail }}" width="250" height="250" /></a>
+  </div>
+
+  <div class="d-flex flex-column align-self-center ms-4">
+    <h2>{{ page.title }}</h2>
+
+    <small><b>Vendor:</b> <em>{{ vendor }}</em></small><br>
+    <small><b>Model:</b> {{ model }}</small><br>
+    <small><b>PD: </b> {{ pd }}</small><br>
+    <small><b>DISPLAY PORT: </b> {{ display_port }}</small><br>
+    <small><b>ETHERNET: </b> {{ ethernet }}</small><br>
+  </div>
+</div>
+
+<hr class="dashed">
+
+{{content}}

@@ -1,0 +1,7 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+how_to.md
+top_pages/specs.html
+Gemfile.lock

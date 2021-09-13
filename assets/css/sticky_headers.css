@@ -1,0 +1,13 @@
+thead tr:nth-child(1) th {
+    position: sticky;
+    top: 0;
+}
+
+thead tr:nth-child(2) th {
+    position: sticky;
+    top: 40px;
+}
+
+thead tr {
+    opacity: 1;
+}

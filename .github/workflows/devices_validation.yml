@@ -1,4 +1,4 @@
-name: Compile Jekyll site
+name: Run devices consistency checks
 on:
   push:   
     paths:

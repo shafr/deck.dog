@@ -68,17 +68,13 @@ The reason why there is so much Dell dock stations is because we have a bunch of
 
 				<!-- There is no way to re-use code in Liqud < 5, so I'll keep ugly copy-paste code for now -->
 				<!-- PD -->
-				{% unless device.power_delivery %}
-				{% assign power_delivery = nt %}
-				{% else device.power_delivery == true %}
-				{% assign power_delivery = yt %}
-				{% elsif device.power_delivery == "nt" %}
-				{% assign power_delivery = nt %}
+				{% if device.power_delivery %}
+					{% assign power_delivery = yt %}
 				{% elsif device.power_delivery == false %}
-				{% assign power_delivery = nw %}
+					{% assign power_delivery = nw %}
 				{% else %}
-				{% assign power_delivery = nt %}
-				{% endunless %}
+					{% assign power_delivery = nt %}
+				{% endif %}
 
 				<!-- Storage -->
 				{% unless device.type_c %}
@@ -219,7 +215,7 @@ The reason why there is so much Dell dock stations is because we have a bunch of
 								class="mt-1 mb-1 ml-1 mr-1" width="50px" height="50px" /></a>
 					</th>
 					<td> {{ model }}</td>
-					<td> {{ pd }}</td>
+					<td> {{ power_delivery }} {{ device.power_delivery | inspect }} </td>
 					<td> {{ type_c }} </td>
 					<td> {{ usb_3 }} </td>
 					<td> {{ usb_2 }} </td>

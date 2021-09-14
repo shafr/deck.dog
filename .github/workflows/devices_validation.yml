@@ -1,0 +1,27 @@
+name: Compile Jekyll site
+on:
+  push:   
+    paths:
+      - '_devices/**'
+  pull_request:   
+    paths:
+      - '_devices/**'      
+      
+jobs:
+  validate-devices:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        validate-command:
+          - checkUnderscoreCount
+          - checkEachDeviceHasImage
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate
+        run: |
+          cd ci_dc/
+          source util.sh
+          ${{ matrix.validate-command }}

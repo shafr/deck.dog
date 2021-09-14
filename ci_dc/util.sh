@@ -27,15 +27,22 @@ function checkEachDeviceHasImage(){
             
         IFS=. read -a splits <<< "${file}"
 
-        size=$(echo ${#splits[@]})
-        echo "INFO: splits size - ${size}"
-
         IMAGE_NAME="${HOME_DIR}/assets/devices/${splits[0]}.png"
 
         if [ ! -f "${IMAGE_NAME}" ]; then
             echo "ERROR: missing image. Please add image called ${splits[0]}.png in 'assets/devices' directory"
             exit 1
         fi
+
+        FILE_TYPE=$(file ${IMAGE_NAME})
+        if [[ ${FILE_TYPE} != *"image data"* ]]; then
+            echo "ERROR: file ${IMAGE_NAME} is not image, actual type is:"
+            echo "${FILE_TYPE}"
+            exit 1
+        fi
+
+
+
     done
 
     echo "OK - Image match checks"

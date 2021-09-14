@@ -40,12 +40,20 @@ function checkEachDeviceHasImage(){
             echo "${FILE_TYPE}"
             exit 1
         fi
-
-
-
     done
 
     echo "OK - Image match checks"
 }
 
-checkEachDeviceHasImage
+function checkNameIsLowercase(){
+    cd "${HOME_DIR}/_devices"
+    for file in *.md; do 
+        pattern="[a-z0-9\-\_\.]+"
+        if [[ ! $file =~ $pattern ]]; then 
+            echo "ERROR: file ${file} is not correct - please check correct format in readme "
+            exit 1
+        fi
+    done
+
+    echo "OK - File format check"
+}

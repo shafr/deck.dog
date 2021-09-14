@@ -17,6 +17,7 @@ jobs:
         validate-command:
           - checkUnderscoreCount
           - checkEachDeviceHasImage
+          - checkNameIsLowercase
 
     steps:
       - uses: actions/checkout@v2

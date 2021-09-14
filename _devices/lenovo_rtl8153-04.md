@@ -7,4 +7,4 @@ power_delivery: false
 ethernet: 1000
 ---
 
-Ethernet adapter from Lenovo.
+Ethernet adapter from Lenovo. Comes with our corporate Apple laptops.

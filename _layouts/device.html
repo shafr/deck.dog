@@ -3,12 +3,29 @@ layout: default
 comments: true
 ---
 
+{% assign yt = "✅" %}
+{% assign nw = "❌" %}
+{% assign nt = "🔲" %}
+
 <!-- Layout specific things -->
-{% assign thumbnail = page.slug | prepend: '/assets/devices/' | append: ".png" %}
+{% assign thumbnail = page.slug | prepend: '/assets/devices/' | append: ".webp" %}
 {% assign vendor = page.slug | split: '_' | first %}
 {% assign model = page.slug | split: '_' | last %}
 
 <!-- Power Delivery in Watts, 0 if not supported -->
+
+{% unless device.type_c %}
+{% assign type_c = nt %}
+{% else device.type_c == true %}
+{% assign type_c = yt %}
+{% elsif device.type_c == "nt" %}
+{% assign type_c = nt %}
+{% elsif device.type_c == false %}
+{% assign type_c = nw %}
+{% else %}
+{% assign type_c = nt %}
+{% endunless %}
+
 
 {% unless page.power_delivery %}
   {% assign pd = "❌" %}

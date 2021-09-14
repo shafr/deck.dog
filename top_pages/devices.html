@@ -60,7 +60,7 @@ The reason why there is so much Dell dock stations is because we have a bunch of
 				<!-- Iterating over specific devices per vendor -->
 				{% for device in vendor.items %}
 
-				{% assign thumbnail = device.slug | prepend: '/assets/devices/' | append: ".png" %}
+				{% assign thumbnail = device.slug | prepend: '/assets/devices/' | append: ".webp" %}
 				{% assign link = site.baseurl | append: device.url %}
 				{% assign model = device.slug | split: '_' | last %}
 

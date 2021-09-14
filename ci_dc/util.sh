@@ -27,15 +27,15 @@ function checkEachDeviceHasImage(){
             
         IFS=. read -a splits <<< "${file}"
 
-        IMAGE_NAME="${HOME_DIR}/assets/devices/${splits[0]}.png"
+        IMAGE_NAME="${HOME_DIR}/assets/devices/${splits[0]}.webp"
 
         if [ ! -f "${IMAGE_NAME}" ]; then
-            echo "ERROR: missing image. Please add image called ${splits[0]}.png in 'assets/devices' directory"
+            echo "ERROR: missing image. Please add image called ${splits[0]}.webp in 'assets/devices' directory"
             exit 1
         fi
 
         FILE_TYPE=$(file ${IMAGE_NAME})
-        if [[ ${FILE_TYPE} != *"image data"* ]]; then
+        if [[ ${FILE_TYPE} != *"Web/P image"* ]]; then
             echo "ERROR: file ${IMAGE_NAME} is not image, actual type is:"
             echo "${FILE_TYPE}"
             exit 1
@@ -47,3 +47,5 @@ function checkEachDeviceHasImage(){
 
     echo "OK - Image match checks"
 }
+
+checkEachDeviceHasImage

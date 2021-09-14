@@ -7,20 +7,20 @@ vendor_link:
 
 power_delivery: 240
 
-usb_3: nt
-usb_2: nt
-type_c: TB3
+usb_3: 
+usb_2: 
+type_c: 
 
 ethernet: 1000
 
-display_DP: nt
-display_hdmi: nt
-display_miniDP: nt
-display_vga: nt
+display_DP: 
+display_hdmi: 
+display_miniDP: 
+display_vga: 
 
-audio_dp: nt
-audio_hdmi: nt
-audio_aux: nt
+audio_dp: 
+audio_hdmi: 
+audio_aux: 
 
 
 ---

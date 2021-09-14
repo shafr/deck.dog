@@ -5,20 +5,20 @@ device_id: '8086:15da'
 
 vendor_link: https://www.dell.com/support/home/en-us/product-support/product/dell-usbc-mobile-adapter-da300/docs
 
-power_delivery: 0
+power_delivery: false
 
-usb_3: yes
-usb_2: no
-type_c: yes
+usb_3: 
+usb_2: 
+type_c: 
 
 ethernet: 1000
 
-display_DP: yes 
-display_hdmi: yes
-display_vga: yes
+display_DP:  
+display_hdmi: 
+display_vga: 
 
-audio_dp: nt
-audio_hdmi: nt
+audio_dp: 
+audio_hdmi: 
 audio_aux: no
 
 ---

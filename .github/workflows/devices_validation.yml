@@ -3,9 +3,11 @@ on:
   push:   
     paths:
       - '_devices/**'
+      - 'assets/devices/**'
   pull_request:   
     paths:
       - '_devices/**'      
+      - 'assets/devices/**'
       
 jobs:
   validate-devices:

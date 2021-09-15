@@ -1,0 +1,193 @@
+---
+layout: default
+title: Devices
+permalink: /cards/
+description: "List of Devices that are supported"
+---
+
+<script>
+	$(document).ready(function () {
+		$('#device_vendors').DataTable();
+		$('.dataTables_length').addClass('bs-select');
+	});
+</script>
+
+
+Below is the list of known tested hardware for steam deck.
+The reason why there is so much Dell dock stations is because we have a bunch of them in the office.
+
+{% assign yt = "✅" %}
+{% assign nw = "❌" %}
+{% assign nt = "🔲" %}
+
+<div id="legend" class="">
+	<small>{{ yt }} - yes, tested working</small>
+	<small>{{ nw }} - not supported</small>
+	<small>{{ nt }} - not tested</small>
+</div>
+
+{% assign vendors = site.devices | group_by: 'vendor' %}
+
+<div id="device_vendors" class="mt-1">
+	<table id="devices_table" class="table table-bordered text-center align-middle table-sm table-hover caption-top">
+		<caption> List of hardware compatible with 'Stream Deck' </caption>
+		<thead class="table-light">
+			<tr>
+				<th scope="col" colspan="2">Details</th>
+				<th scope="col">Power</th>
+				<th scope="col" colspan="2">USB</th>
+				<th scope="col" rowspan="2">Type-C</th>
+				<th scope="col">NET</th>
+				<th scope="col" colspan="3">Display</th>
+				<th scope="col" colspan="3">AUDIO</th>
+			</tr>
+			<tr>
+				<th scope="col">Icon</th>
+				<th scope="col">Model</th>
+
+				<th scope="col">PD</th>
+				<th scope="col">3.0</th>
+				<th scope="col">2.0</th>
+				<th scope="col">RJ45</th>
+
+				<th scope="col">DP</th>
+				<th scope="col">HDMI</th>
+				<th scope="col">VGA</th>
+
+
+				<th scope="col">DP</th>
+				<th scope="col">HDMI</th>
+				<th scope="col">AUX</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for vendor in vendors %}
+			<tr>
+				<td scope="col" colspan="100%" class="display-2 text-center"> {{ vendor.name }}</td>
+			</tr>
+			<div id="single_device_entity" class="mt-4 mb-1">
+				<!-- Iterating over specific devices per vendor -->
+				{% for device in vendor.items %}
+
+				{% assign thumbnail = device.slug | prepend: '/assets/devices/' | append: ".webp" %}
+				{% assign link = site.baseurl | append: device.url %}
+				{% assign model = device.slug | split: '_' | last %}
+
+				<!-- There is no way to re-use code in Liqud < 5, so I'll keep ugly copy-paste code for now -->
+
+				<!-- power_delivery -->
+				{% if device.power_delivery %}
+				{% assign power_delivery = yt %}
+				{% elsif device.power_delivery == false %}
+				{% assign power_delivery = nw %}
+				{% else %}
+				{% assign power_delivery = nt %}
+				{% endif %}
+				<!-- type_c -->
+				{% if device.type_c %}
+				{% assign type_c = yt %}
+				{% elsif device.type_c == false %}
+				{% assign type_c = nw %}
+				{% else %}
+				{% assign type_c = nt %}
+				{% endif %}
+				<!-- usb_3 -->
+				{% if device.usb_3 %}
+				{% assign usb_3 = yt %}
+				{% elsif device.usb_3 == false %}
+				{% assign usb_3 = nw %}
+				{% else %}
+				{% assign usb_3 = nt %}
+				{% endif %}
+				<!-- usb_2 -->
+				{% if device.usb_2 %}
+				{% assign usb_2 = yt %}
+				{% elsif device.usb_2 == false %}
+				{% assign usb_2 = nw %}
+				{% else %}
+				{% assign usb_2 = nt %}
+				{% endif %}
+				<!-- ethernet -->
+				{% if device.ethernet %}
+				{% assign ethernet = yt %}
+				{% elsif device.ethernet == false %}
+				{% assign ethernet = nw %}
+				{% else %}
+				{% assign ethernet = nt %}
+				{% endif %}
+				<!-- display_DP -->
+				{% if device.display_DP %}
+				{% assign display_DP = yt %}
+				{% elsif device.display_DP == false %}
+				{% assign display_DP = nw %}
+				{% else %}
+				{% assign display_DP = nt %}
+				{% endif %}
+				<!-- display_HDMI -->
+				{% if device.display_HDMI %}
+				{% assign display_HDMI = yt %}
+				{% elsif device.display_HDMI == false %}
+				{% assign display_HDMI = nw %}
+				{% else %}
+				{% assign display_HDMI = nt %}
+				{% endif %}
+				<!-- display_VGA -->
+				{% if device.display_VGA %}
+				{% assign display_VGA = yt %}
+				{% elsif device.display_VGA == false %}
+				{% assign display_VGA = nw %}
+				{% else %}
+				{% assign display_VGA = nt %}
+				{% endif %}
+				<!-- audio_DP -->
+				{% if device.audio_DP %}
+				{% assign audio_DP = yt %}
+				{% elsif device.audio_DP == false %}
+				{% assign audio_DP = nw %}
+				{% else %}
+				{% assign audio_DP = nt %}
+				{% endif %}
+				<!-- audio_HDMI -->
+				{% if device.audio_HDMI %}
+				{% assign audio_HDMI = yt %}
+				{% elsif device.audio_HDMI == false %}
+				{% assign audio_HDMI = nw %}
+				{% else %}
+				{% assign audio_HDMI = nt %}
+				{% endif %}
+				<!-- audio_AUX -->
+				{% if device.audio_AUX %}
+				{% assign audio_AUX = yt %}
+				{% elsif device.audio_AUX == false %}
+				{% assign audio_AUX = nw %}
+				{% else %}
+				{% assign audio_AUX = nt %}
+				{% endif %}
+
+
+				<tr>
+					<th>
+						<a href="{{ link }}"> <img src="{{ thumbnail }}" alt="{{ device.model }}"
+								class="mt-1 mb-1 ml-1 mr-1" width="50px" height="50px" /></a>
+					</th>
+					<td> {{ model }}</td>
+					<td> {{ power_delivery }} </td>
+					<td> {{ type_c }} </td>
+					<td> {{ usb_3 }} </td>
+					<td> {{ usb_2 }} </td>
+					<td> {{ ethernet }} </td>
+					<td> {{ display_DP }} </td>
+					<td> {{ display_HDMI }} </td>
+					<td> {{ display_VGA }} </td>
+					<td> {{ audio_DP }} </td>
+					<td> {{ audio_HDMI }} </td>
+					<td> {{ audio_AUX }} </td>
+				</tr>
+				{% endfor %}
+			</div>
+			{% endfor %}
+
+
+
+	</table>
+</div>

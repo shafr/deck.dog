@@ -1,0 +1,24 @@
+---
+layout: default
+title: Devices
+permalink: /gallery/
+description: "List of Devices that are supported"
+---
+
+{% assign vendors = site.devices | group_by: 'vendor' %}
+
+<div class="mt-1 container-fluid">
+    {% for vendor in vendors %}
+        <!-- Iterating over specific devices per vendor -->
+        {% for device in vendor.items %}
+            <div class="float-left">
+                {% assign thumbnail = device.slug | prepend: '/assets/devices/' | append: ".webp" %}
+                {% assign link = site.baseurl | append: device.url %}
+                {% assign model = device.slug | split: '_' | last %}
+
+                <a href="{{ link }}">
+                    <img src="{{ thumbnail }}" alt="{{ device.model }}" width="100px" height="100px" class="mt-1 mb-1 ml-1 mr-1 img-thumbnail"/></a>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
